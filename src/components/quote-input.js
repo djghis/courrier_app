@@ -74,4 +74,5 @@ class QuoteInput extends Component {
   }
 }
 
+
 export default QuoteInput

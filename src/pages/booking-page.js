@@ -1,16 +1,16 @@
-import React from "react"
-import { Link } from "gatsby"
+import React, { Component } from 'react'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+class BookingPage extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <>
+        
+      </>
+    )
+  }
+}
 
-const SecondPage = () => (
-  <Layout>
-    <SEO title="booking-page" />
-    <h1>Hi from the second page</h1>
-    <p>Welcome to page 2</p>
-    <Link to="/">Go back to the homepage</Link>
-  </Layout>
-)
-
-export default SecondPage
+export default BookingPage
