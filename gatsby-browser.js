@@ -18,17 +18,17 @@
 
 // export default WrapRootElement
 
-import React from "react";
-import Container from "./src/container";
-export const wrapRootElement = ({ element, ...restProps }, ...args) => {
-  return (
-    <Container
-      name="wrapRootElement"
-      props={restProps}
-      args={args}
-      mode="browser"
-    >
-      {element}
-    </Container>
-  );
-};
+// import React from "react";
+// import Container from "./src/container";
+// export const wrapRootElement = ({ element, ...restProps }, ...args) => {
+//   return (
+//     <Container
+//       name="wrapRootElement"
+//       props={restProps}
+//       args={args}
+//       mode="browser"
+//     >
+//       {element}
+//     </Container>
+//   );
+// };

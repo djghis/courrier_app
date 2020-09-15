@@ -599,7 +599,18 @@ pre tt:after {
 footer {
   position: absolute;
   bottom: 0;
+
   width: 100%;
   height: 2.5rem;
-  margin-left: 15%;
+  /* margin-left: 15%; */
+}
+
+.quote-input {
+  position: absolute;
+  top: -100;
+  z-index: 10;
+}
+
+.layout {
+  position: relative;
 }
