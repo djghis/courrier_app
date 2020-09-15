@@ -18,10 +18,6 @@ class BookingPage extends Component {
       phoneNumber: '',
       emailAddress: '',
     },
-    parcelDetails: {
-      size: this.props.size,
-      weight: 0,
-    },
     dropOff: {
       companyName: '',
       address1: '',
@@ -31,15 +27,17 @@ class BookingPage extends Component {
       city: '',
       date: '', 
       },
-      receiver: {
+      recipient: {
         name: '',
         phoneNumber: '',
         emailAddress: '',
       },
       details: {
-      comment: '',
-      referenceNumber: '',
-      fragile: false,
+        size: this.props.size,
+        weight: 0,
+        comment: '',
+        referenceNumber: '',
+        fragile: false,
       }
     }
   }
@@ -81,10 +79,32 @@ class BookingPage extends Component {
     })
   }
 
+  handleFragileChange = (event) => {
+    let details = this.state.details
+    details.fragile = !details.fragile
+    this.setState({details: details})
+  }
+
+  
+
   render() {
     return (
       <>
       <form onSubmit={this.handleSubmit}>
+          <h3>Customer Details</h3>
+                <label>Name:
+                    <input type="text" id="name" name="name" section="customerDetails" value={this.state.customerDetails.name}
+                    onChange={this.handleInputChange} />
+                </label>
+                <label>Phone Number:
+                    <input type="tel" id="phoneNumber" name="phoneNumber" section="customerDetails" value={this.state.customerDetails.phoneNumber}
+                    onChange={this.handleInputChange}  />
+                </label>
+                <label>Email address:
+                    <input type="email" id="emailAddress" name="emailAddress" section="customerDetails" value={this.state.customerDetails.emailAddress}
+                    onChange={this.handleInputChange} />
+                </label>
+          
           <h3>Pick up Details</h3>
             <label>Company Name:
                 <input type="text" id="companyName" name="companyName" section="pickUp" value={this.state.pickUp.companyName}
@@ -139,6 +159,44 @@ class BookingPage extends Component {
                 <input type="text" id="dropOff" name="postcode" section="dropOff" value={this.state.dropOff.postCode}
             onChange={this.handleInputChange} pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"/>
             </label>
+
+            <h3>Recipient Details</h3>
+            <label>Name:
+                <input type="text" id="name" name="name" section="recipient" value={this.state.recipient.name}
+                onChange={this.handleInputChange} />
+            </label>
+            <label>Phone Number:
+                <input type="tel" id="phoneNumber" name="phoneNumber" section="recipient" value={this.state.recipient.phoneNumber}
+                onChange={this.handleInputChange}  />
+            </label>
+            <label>Email address:
+                <input type="email" id="emailAddress" name="emailAddress" section="recipient" value={this.state.recipient.emailAddress}
+                onChange={this.handleInputChange} />
+            </label>
+          
+
+          <h3>Parcel Details</h3>
+            <label>Size:
+                <select id="size" name="size" section="details" onChange={this.handleInputChange} defaultValue={this.state.details.size}>
+                  <option value ="small">small</option>
+                  <option value ="medium">medium</option>
+                  <option value ="large">large</option>
+                  <option value ="pallet">pallet</option>
+                </select>
+            </label>
+            <label>Weight:
+                <input type="number" id="weight" name="weight" section="details" value={this.state.details.weight}
+                onChange={this.handleInputChange} /><span>kg</span>
+            </label>
+            <label>Fragile:
+                <input type="checkbox" id="fragile" name="fragile" section="details" value={this.state.details.fragile}
+                onChange={this.handleFragileChange} />
+            </label>
+            {/* <label>Comments: */}
+                <textarea type="text" id="comment" name="comment" section="details" value={this.state.details.comment}
+                onChange={this.handleInputChange} placeholder="please tell us anything the driver needs to know." />
+            {/* </label> */}
+
 
             
             <button type="submit">
