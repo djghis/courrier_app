@@ -26,7 +26,6 @@ class AddressForm extends Component {
 
     onQuery = (evt) => {
       const query = evt.target.value;
-      console.log("hello from the query on address form")
       if (!query.length > 0) {
         const address = this.getEmptyAddress();
         return this.setState({
@@ -39,8 +38,8 @@ class AddressForm extends Component {
       const self = this;
       axios.get('https://autocomplete.geocoder.api.here.com/6.2/suggest.json', {
         'params': {
-          'app_id': '{process.env.app_id}',
-          'app_code': '{process.env.app_code}',
+        //   'app_id': process.env.app_id,
+          'api_key': process.env.api_key,
           'query': query,
           'maxresults': 1,
         }}).then(function (response) {

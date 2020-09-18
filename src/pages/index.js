@@ -30,6 +30,7 @@ class IndexPage extends Component {
       dropOffPostcode: '',
       size: 'small',
       quoteAccepted: false,
+
     }
        
   }  
@@ -52,10 +53,29 @@ handleInputChange = event => {
 
   handleSubmit = event => {
     event.preventDefault()
+    const pickUpLatLong = this.getLatLong(this.state.pickUpPostcode)
+    const dropOffLatLong = this.getLatLong(this.state.dropOffPostcode)
+    console.log('pickUpLatLong :>> ', pickUpLatLong);
+    console.log('dropOffLatLong :>> ', dropOffLatLong);
     this.setState({
         quote: 50
     })
   }
+
+  getLatLong = (postCode) => {
+    postCode = postCode.replace(/\s/g, '')
+    let result = {}
+    const url= `http://api.getthedata.com/postcode/${postCode}`
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        result.lat = data.data.latitude
+        result.long = data.data.longitude 
+      });
+      return result
+  }
+
+
 
   handleQuoteStatusChange = () => {
     this.setState(

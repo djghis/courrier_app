@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 // const { resolveConfig } = require("prettier");
-import {Link} from 'gatsby'
+// import {Link} from 'gatsby'
 
 
 const QuoteInput = (props) => {
@@ -46,12 +46,17 @@ const QuoteInput = (props) => {
             onChange={props.handleInputChange} pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"/>
             </label><br></br>
             <div onChange={props.onChangeValue}>
-            <label>
-                <input type="radio" name="size" id="small" value="small" required /> Small
-            </label>
+            <div className="tooltip">
+            <label >
+                <input type="radio" name="size" id="small" value="small" required  /> Small
+            </label><span className="tooltiptext">Max size: 35 x 45 x56cm</span>
+            </div>
+            <div className="tooltip">
             <label>
                 <input type="radio" name="size" id="medium" value="medium" required /> Medium
-            </label><label>
+            </label><span className="tooltiptext">Max size: 56 x 78 x89cm</span>
+            </div>
+            <label>
                 <input type="radio" name="size" id="large" value="large" required /> Large
             </label><label>
                 <input type="radio" name="size" id="pallet" value="pallet" required /> Pallet
