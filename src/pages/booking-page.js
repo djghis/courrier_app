@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
-import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
-import AddressForm from '../components/address-search/address-form'
+import PlacesAutocomplete from '../components/google-autocomplete';
 
 class BookingPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
      pickUp: {
-      companyName: '',
       address1: '',
       address2: '',
       address3: '',
+      address4: '',
       postcode: this.props.bookingDetails.pickUpPostcode,
       city: '',
       date: '', 
@@ -21,10 +20,10 @@ class BookingPage extends Component {
       emailAddress: '',
     },
     dropOff: {
-      companyName: '',
       address1: '',
       address2: '',
       address3: '',
+      address4: '',
       postcode: this.props.bookingDetails.dropOffPostcode,
       city: '',
       date: '', 
@@ -83,30 +82,6 @@ class BookingPage extends Component {
   render() {
     return (
       <>
-      {/* <div className="row form-group justify-content-start">
-            <label className="col-sm-4 col-form-label">{this.props.label}</label>
-            <div className="col-xl-8">
-              <input
-                type="text"
-                defaultValue={this.props.value}
-                onChange={this.props.onChange}
-                className="form-control"
-                placeholder={this.props.placeholder} />
-            </div>
-        </div> */}
-        <AddressForm />
-      {/* <GooglePlacesAutocomplete 
-        apiKey={process.env.key}
-        autocompletionRequest={{
-    // bounds: [
-    //   { lat: 50, lng: 50 },
-    //   { lat: 100, lng: 100 }
-    // ],
-    componentRestrictions: {
-    country: ['uk'],
-    }
-  }}
-      /> */}
       <form onSubmit={this.handleSubmit}>
           <h3>Customer Details</h3>
             <label>Name:
@@ -123,10 +98,7 @@ class BookingPage extends Component {
             </label>
           
           <h3>Pick up Details</h3>
-            <label>Company Name:
-                <input type="text" id="companyName" name="companyName" section="pickUp" value={this.state.pickUp.companyName}
-                onChange={this.handleInputChange} />
-            </label>
+            <PlacesAutocomplete />
             <label>Address line 1:
                 <input type="text" id="address1" name="address1" section="pickUp" value={this.state.pickUp.Address1}
                 onChange={this.handleInputChange} required />
@@ -137,6 +109,10 @@ class BookingPage extends Component {
             </label>
             <label>Address line 3:
                 <input type="text" id="address3" name="address3" section="pickUp" value={this.state.pickUp.Address3}
+                onChange={this.handleInputChange} />
+            </label>
+            <label>Address line 4:
+                <input type="text" id="address4" name="address4" section="pickUp" value={this.state.pickUp.Address4}
                 onChange={this.handleInputChange} />
             </label>
             <label>City:
@@ -152,28 +128,28 @@ class BookingPage extends Component {
                 onChange={this.handleInputChange}  required />
             </label>
             <h3>Drop Off details</h3>
-              <label>Company Name:
-                  <input type="text" id="companyName" name="companyName" section="dropOff" value={this.state.dropOff.companyName}
-                  onChange={this.handleInputChange} />
-              </label>
               <label>Address line 1:
-                  <input type="text" id="address1" name="address1" section="dropOff" value={this.state.dropOff.Address1}
+                  <input type="text" id="address1DropOff" name="address1" section="dropOff" value={this.state.dropOff.Address1}
                   onChange={this.handleInputChange} required  />
               </label>
               <label>Address line 2:
-                  <input type="text" id="address2" name="address2" section="dropOff" value={this.state.dropOff.Address2}
+                  <input type="text" id="address2DropOff" name="address2" section="dropOff" value={this.state.dropOff.Address2}
                   onChange={this.handleInputChange} />
               </label>
               <label>Address line 3:
-                  <input type="text" id="address3" name="address3" section="dropOff" value={this.state.dropOff.Address3}
+                  <input type="text" id="address3DropOff" name="address3" section="dropOff" value={this.state.dropOff.Address3}
+                  onChange={this.handleInputChange} />
+              </label>
+              <label>Address line 4:
+                  <input type="text" id="address4DropOff" name="address4" section="dropOff" value={this.state.dropOff.Address4}
                   onChange={this.handleInputChange} />
               </label>
               <label>City:
-                  <input type="text" id="city" name="city" section="dropOff" value={this.state.dropOff.city}
+                  <input type="text" id="city" name="cityDropOff" section="dropOff" value={this.state.dropOff.city}
                   onChange={this.handleInputChange} required  />
               </label>
               <label>Drop off Postcode:
-                  <input type="text" id="dropOff" name="postcode" section="dropOff" value={this.props.bookingDetails.dropOffPostcode}
+                  <input type="text" id="dropOffDropOff" name="postcode" section="dropOff" value={this.props.bookingDetails.dropOffPostcode}
                   onChange={this.handleInputChange} pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})" required />
               </label>
 

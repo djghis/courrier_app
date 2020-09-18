@@ -52,9 +52,43 @@ handleInputChange = event => {
 
   handleSubmit = event => {
     event.preventDefault()
+    if (this.checkValidPostcode(this.state.pickUpPostcode) && this.checkValidPostcode(this.state.dropOffPostcode)) {
+      const quote = this.getQuote(this.state.size)
     this.setState({
-        quote: 50
+        quote: quote
     })
+    } else {
+      this.setState({quote: 'invalid postcode'})
+    }
+    
+  }
+
+  getQuote = (size) => {
+    switch(size) {
+      case 'small': 
+        return 15
+      case 'medium':
+        return 20
+        case 'large':
+          return 25
+          case 'pallet':
+            return 65
+      default:
+        return 15
+    }
+  }
+
+  checkValidPostcode = (postcode) => {
+    const x = postcode[1]
+    let postcodeStart;
+    if (x >= '0' && x <= '9') {
+      postcodeStart = postcode[0].toUpperCase()
+    } else {
+      postcodeStart = postcode.slice(0,2).toUpperCase()
+    }
+    console.log('postcodeStart :>> ', postcodeStart);
+    const validPostcode = ["BR", "CM","CR","DA","E","EC","EN","GU","HA","HP","IG","KT","N","NW","RM","SE","SL","SM","SS","SW","TN","TW","UB","W","WC","WD"]
+    return validPostcode.includes(postcodeStart)
   }
 
   handleQuoteStatusChange = () => {
