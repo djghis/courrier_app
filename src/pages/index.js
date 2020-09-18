@@ -30,6 +30,16 @@ class IndexPage extends Component {
       dropOffPostcode: '',
       size: 'small',
       quoteAccepted: false,
+      prices: {
+        small: 15,
+        medium: 20,
+        large: 25,
+        pallet: 65,
+      },
+      validInput: {
+        pickUpPostcode: false,
+        dropOffPostcode: false
+      }
     }
        
   }  
@@ -39,10 +49,32 @@ handleInputChange = event => {
     const target = event.target
     const value = target.value
     const name = target.name
+    if (value.length>1){
+      console.log(value)
+      if (!this.checkValidPostcode(event.target.value)){
+        console.log('invalid postcode')
+        this.setState(prevState => ({
+          ...prevState,
+          validInput: {
+              ...prevState.validInput,
+              [name]: true
+          }
+      }))
+    } else {
+      console.log('valid postcode')
+        this.setState(prevState => ({
+          ...prevState,
+          validInput: {
+              ...prevState.validInput,
+              [name]: false
+          }
+      }))
+    }
     this.setState({
       [name]: value,
     })
   }
+}
 
   onChangeValue = event => {
     this.setState({
@@ -60,22 +92,10 @@ handleInputChange = event => {
     } else {
       this.setState({quote: 'invalid postcode'})
     }
-    
   }
 
   getQuote = (size) => {
-    switch(size) {
-      case 'small': 
-        return 15
-      case 'medium':
-        return 20
-        case 'large':
-          return 25
-          case 'pallet':
-            return 65
-      default:
-        return 15
-    }
+    return this.state.prices[size]
   }
 
   checkValidPostcode = (postcode) => {
@@ -86,7 +106,6 @@ handleInputChange = event => {
     } else {
       postcodeStart = postcode.slice(0,2).toUpperCase()
     }
-    console.log('postcodeStart :>> ', postcodeStart);
     const validPostcode = ["BR", "CM","CR","DA","E","EC","EN","GU","HA","HP","IG","KT","N","NW","RM","SE","SL","SM","SS","SW","TN","TW","UB","W","WC","WD"]
     return validPostcode.includes(postcodeStart)
   }
@@ -105,7 +124,7 @@ handleInputChange = event => {
         <h1>Hi people</h1>
         { !this.state.quoteAccepted ?
         <div className='quote-input'>
-          <QuoteInput  handleInputChange={this.handleInputChange} onChangeValue={this.onChangeValue} handleSubmit={this.handleSubmit} handleQuoteStatusChange={this.handleQuoteStatusChange} quote={this.state.quote} />     
+          <QuoteInput  handleInputChange={this.handleInputChange} onChangeValue={this.onChangeValue} handleSubmit={this.handleSubmit} handleQuoteStatusChange={this.handleQuoteStatusChange} quote={this.state.quote} validInput={this.state.validInput} />     
         </div>
         :
         <div>

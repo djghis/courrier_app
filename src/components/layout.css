@@ -615,3 +615,16 @@ footer {
 .layout {
   position: relative;
 }
+
+.red {
+  border-color: red;
+}
+
+.red:focus{
+  outline: none;
+}
+
+.invalid {
+  color: red;
+  font-weight: bold;
+}

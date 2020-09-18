@@ -4,18 +4,23 @@ import {Link} from 'gatsby'
 
 
 const QuoteInput = (props) => {
-  
+    
     return (
       <>
         <form onSubmit={props.handleSubmit}>
+            <div>
             <label>Pick-up Postcode:
-                <input type="text" id="pickup" name="pickUpPostcode" value={props.pickUpPostcode}
+                <input className={props.validInput.pickUpPostcode? 'red' : ''} type="text" id="pickup" name="pickUpPostcode" value={props.pickUpPostcode}
             onChange={props.handleInputChange} pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"/>
-            </label>
+            </label> {props.validInput.pickUpPostcode? <span className="invalid">Invalid Postcode</span> : <span></span>}
+            </div>
+            <div>
             <label>Drop-off Postcode:
-                <input type="text" id="dropoff" name="dropOffPostcode" value={props.dropOffPostcode}
+                <input className={props.validInput.dropOffPostcode? 'red' : ''} type="text" id="dropoff" name="dropOffPostcode" value={props.dropOffPostcode}
             onChange={props.handleInputChange} pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"/>
-            </label><br></br>
+            </label> {props.validInput.dropOffPostcode? <span className="invalid">Invalid Postcode</span> : <span></span>}
+            </div>
+            <br></br>
             <div onChange={props.onChangeValue}>
             <label>
                 <input type="radio" name="size" id="small" value="small" required /> Small
