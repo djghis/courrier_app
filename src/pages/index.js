@@ -32,6 +32,9 @@ class IndexPage extends Component {
       quoteAccepted: false,
 
     }
+
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.getLatLong = this.getLatLong.bind(this)
        
   }  
   
@@ -51,28 +54,58 @@ handleInputChange = event => {
     });
   }
 
-  handleSubmit = event => {
+  async handleSubmit(event){
     event.preventDefault()
-    const pickUpLatLong = this.getLatLong(this.state.pickUpPostcode)
-    const dropOffLatLong = this.getLatLong(this.state.dropOffPostcode)
+    let distance
+    const pickUpLatLong = await this.getLatLong(this.state.pickUpPostcode)
+    const dropOffLatLong = await this.getLatLong(this.state.dropOffPostcode)
+    this.getDistanceFromLatLonInKm(pickUpLatLong.lat, pickUpLatLong.long, dropOffLatLong.lat, dropOffLatLong.long).then(data=>distance=data)
     console.log('pickUpLatLong :>> ', pickUpLatLong);
     console.log('dropOffLatLong :>> ', dropOffLatLong);
+    console.log('distance :>> ', distance);
     this.setState({
         quote: 50
     })
   }
 
-  getLatLong = (postCode) => {
+  async getLatLong(postCode){
     postCode = postCode.replace(/\s/g, '')
     let result = {}
     const url= `http://api.getthedata.com/postcode/${postCode}`
-    fetch(url)
+    await fetch(url)
       .then((response) => response.json())
       .then((data) => {
         result.lat = data.data.latitude
         result.long = data.data.longitude 
       });
       return result
+  }
+
+  getDistanceFromLatLonInKm = (lat1, lon1, lat2, lon2) => {
+    console.log('lat1 :>> ', lat1);
+    console.log('lon1 :>> ', lon1);
+    console.log('lat2 :>> ', lat2);
+    console.log('lon2 :>> ', lon2);
+    var R = 6371; // Radius of the earth in km
+    var dLat = this.deg2rad(lat2-lat1);  // deg2rad below
+    console.log('dlat :>> ', dLat);
+    var dLon = this.deg2rad(lon2-lon1);
+    console.log('dlon :>> ', dLon);
+    var a = 
+      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * 
+      Math.sin(dLon/2) * Math.sin(dLon/2)
+      ; 
+      console.log('a :>> ', a);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    console.log('c :>> ', c);
+    var d = R * c // Distance in km
+    console.log('d :>> ', d);
+    return d;
+  }
+  
+  deg2rad = (deg) => {
+    return deg * (Math.PI/180)
   }
 
 

@@ -4,34 +4,6 @@ import React from 'react'
 
 
 const QuoteInput = (props) => {
-  
-    // state = {
-    //     pickUpPostcode : '',
-    //     dropOffPostcode: '',
-    //     size: 'small',
-    // }
-    
-    // handleInputChange = event => {
-    //     const target = event.target
-    //     const value = target.value
-    //     const name = target.name
-    //     this.setState({
-    //       [name]: value,
-    //     })
-    //   }
-
-    //   onChangeValue = event => {
-    //     this.setState({
-    //       size: event.target.value
-    //     });
-    //   }
-
-    //   handleSubmit = event => {
-    //     event.preventDefault()
-    //     this.setState({
-    //         quote: 50
-    //     })
-    //   }
 
   
     return (
