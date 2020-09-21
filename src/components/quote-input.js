@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-// const { resolveConfig } = require("prettier");
-import {Link} from 'gatsby'
+// import {Link} from 'gatsby'
+import Tippy from '@tippyjs/react'
 
 
 const QuoteInput = (props) => {
@@ -22,16 +22,26 @@ const QuoteInput = (props) => {
             </div>
             <br></br>
             <div onChange={props.onChangeValue}>
+            <Tippy content="Max size 35x45x60cm, 15kg" >
             <label>
                 <input type="radio" name="size" id="small" value="small" required /> Small
             </label>
+            </Tippy>
+            <Tippy content="Max size 45x60x56cm, 20kg" >
             <label>
                 <input type="radio" name="size" id="medium" value="medium" required /> Medium
-            </label><label>
+            </label>
+            </Tippy>
+            <Tippy content="Max size 75x70x100cm, 35kg" >
+            <label>
                 <input type="radio" name="size" id="large" value="large" required /> Large
-            </label><label>
+            </label>
+            </Tippy>
+            <Tippy content="Max size 1200x1000x2000cm, 350kg" >
+            <label>
                 <input type="radio" name="size" id="pallet" value="pallet" required /> Pallet
             </label>
+            </Tippy>
             </div>
             <button type="submit">
                 Get quote.

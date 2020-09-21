@@ -28,7 +28,7 @@ class IndexPage extends Component {
     this.state = {
       pickUpPostcode : '',
       dropOffPostcode: '',
-      size: 'small',
+      size: '',
       quoteAccepted: false,
       prices: {
         small: 15,

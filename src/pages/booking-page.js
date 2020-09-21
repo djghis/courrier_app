@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import PlacesAutocomplete from '../components/google-autocomplete';
+import PlacesAutocomplete from '../components/google-autocomplete'
+import Tippy from '@tippyjs/react'
+import 'tippy.js/dist/tippy.css'
 
 class BookingPage extends Component {
   constructor(props) {
@@ -169,10 +171,13 @@ class BookingPage extends Component {
           
 
             <h3>Parcel Details</h3>
-              <label>Size:
+            
+              <label>Size: <Tippy content=" max size: Small: 56x67x45cm  Medium: 452366   Large: 4536  Pallet: 1000x1200x1500 "><span>
+            &#9432;</span></Tippy>
+            
                   <select id="size" name="size" section="details" onChange={this.handleInputChange} defaultValue={this.state.details.size}>
-                    <option value ="small">small</option>
-                    <option value ="medium">medium</option>
+                    <option title="Parcel must be no more than 56x67x45cm" value ="small">small</option>
+                     <option value ="medium">medium</option>
                     <option value ="large">large</option>
                     <option value ="pallet">pallet</option>
                   </select>
