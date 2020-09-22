@@ -4,6 +4,23 @@
  * See: https://www.gatsbyjs.org/docs/ssr-apis/
  */
 
+import React from 'react'
+export const onRenderBody = (
+    {setHeadComponents}, pluginOptions
+) => {
+    setHeadComponents([
+        <script
+         type="text/javascript" 
+         src={`https://maps.googleapis.com/maps/api/js?key=${process.env.key}&libraries=places`}
+         >
+         </script>
+    ])
+}
+
+
+
+
+
 // You can delete this file if you're not using it
 // import React from 'react'
 // import Container from './src/container'

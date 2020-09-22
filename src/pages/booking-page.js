@@ -16,12 +16,12 @@ class BookingPage extends Component {
       city: '',
       date: '', 
       },
-    customerDetails: {
+     customerDetails: {
       name: '',
       phoneNumber: '',
       emailAddress: '',
-    },
-    dropOff: {
+     },
+     dropOff: {
       address1: '',
       address2: '',
       address3: '',
@@ -30,12 +30,12 @@ class BookingPage extends Component {
       city: '',
       date: '', 
       },
-      recipient: {
+     recipient: {
         name: '',
         phoneNumber: '',
         emailAddress: '',
       },
-      details: {
+     details: {
         size: this.props.bookingDetails.size,
         weight: 0,
         comment: '',
@@ -101,7 +101,9 @@ class BookingPage extends Component {
             </label>
           
           <h3>Pick up Details</h3>
+
             <PlacesAutocomplete />
+
             <label>Address line 1:
                 <input type="text" id="address1" name="address1" section="pickUp" value={this.state.pickUp.Address1}
                 onChange={this.handleInputChange} required />
@@ -172,11 +174,12 @@ class BookingPage extends Component {
           
 
             <h3>Parcel Details</h3>
-            
-              {/* <label>Size: <Tippy content={dimensions}><span> */}
-              <label>Size: <Tippy content={dimensions}><span>
-                            &#9432;</span>
-                            </Tippy>
+              <label>Size:
+                  <Tippy content={dimensions}>
+                    <span>
+                      &#9432;
+                    </span>
+                  </Tippy>
                   <select id="size" name="size" section="details" onChange={this.handleInputChange} defaultValue={this.state.details.size}>
                     <option title={this.props.bookingDetails.dimensions.small} value ="small">small</option>
                     <option title={this.props.bookingDetails.dimensions.medium} value ="medium">medium</option>
@@ -191,17 +194,12 @@ class BookingPage extends Component {
               <label>Fragile:
                   <input type="checkbox" id="fragile" name="fragile" section="details" value={this.state.details.fragile}
                   onChange={this.handleFragileChange} />
-              </label>
-              {/* <label>Comments: */}
+              </label>   
                   <textarea type="text" id="comment" name="comment" section="details" value={this.state.details.comment}
-                  onChange={this.handleInputChange} placeholder="please tell us anything the driver needs to know." />
-              {/* </label> */}
-
-
-            
-            <button type="submit">
-                Book your delivery.
-            </button>
+                  onChange={this.handleInputChange} placeholder="please tell us anything the driver needs to know." />     
+              <button type="submit">
+                  Book your delivery.
+              </button>
         </form>
         
       </>

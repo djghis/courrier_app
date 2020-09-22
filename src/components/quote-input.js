@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-// import {Link} from 'gatsby'
+import React from 'react'
 import Tippy from '@tippyjs/react'
 
 
