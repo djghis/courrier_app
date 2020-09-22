@@ -4,7 +4,9 @@ import usePlacesAutocomplete, {
   getLatLng,
   getZipCode,
 } from "use-places-autocomplete"
-// import useOnclickOutside from "react-cool-onclickoutside"
+import useOnclickOutside from "react-cool-onclickoutside"
+import Logo from '../images/powered_by_google_on_white.png'
+
 
 const PlacesAutocomplete = () => {
   const {
@@ -17,13 +19,14 @@ const PlacesAutocomplete = () => {
     requestOptions: {
       /* Define search scope here */
     },
-    debounce: 300,
+    debounce: 900,
   });
-//   const ref = useOnclickOutside(() => {
-//     // When user clicks outside of the component, we can dismiss
-//     // the searched suggestions by calling this method
-//     clearSuggestions();
-//   });
+
+  const ref = useOnclickOutside(() => {
+    // When user clicks outside of the component, we can dismiss
+    // the searched suggestions by calling this method
+    clearSuggestions();
+  });
 
   const handleInput = (e) => {
     // Update the keyword of the input element
@@ -72,15 +75,17 @@ const PlacesAutocomplete = () => {
       } = suggestion;
 
       return (
+          
         <li key={id} onClick={handleSelect(suggestion)}>
           <strong>{main_text}</strong> <small>{secondary_text}</small>
         </li>
+        
       );
     });
 
   return (
       <div>
-    {/* // <div ref={ref}> */}
+    <div ref={ref}>
       <input
         value={value}
         onChange={handleInput}
@@ -89,6 +94,7 @@ const PlacesAutocomplete = () => {
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
       {status === "OK" && <ul>{renderSuggestions()}</ul>}
+        </div>
     </div>
   );
 };
