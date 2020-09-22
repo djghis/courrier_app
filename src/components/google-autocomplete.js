@@ -5,7 +5,7 @@ import usePlacesAutocomplete, {
   getZipCode,
 } from "use-places-autocomplete"
 import useOnclickOutside from "react-cool-onclickoutside"
-import Logo from '../images/powered_by_google_on_white.png'
+import powered_by_google_on_white from '../images/powered_by_google_on_white.png'
 
 
 const PlacesAutocomplete = () => {
@@ -95,6 +95,7 @@ const PlacesAutocomplete = () => {
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
       {status === "OK" && <ul>{renderSuggestions()}</ul>}
         </div>
+        <image src={powered_by_google_on_white} alt="Google logo" />
     </div>
   );
 };
