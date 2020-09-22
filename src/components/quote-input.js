@@ -22,22 +22,22 @@ const QuoteInput = (props) => {
             </div>
             <br></br>
             <div onChange={props.onChangeValue}>
-            <Tippy content="Max size 35x45x60cm, 15kg" >
+            <Tippy content={props.bookingDetails.dimensions.small} >
             <label>
                 <input type="radio" name="size" id="small" value="small" required /> Small
             </label>
             </Tippy>
-            <Tippy content="Max size 45x60x56cm, 20kg" >
+            <Tippy content={props.bookingDetails.dimensions.medium} >
             <label>
                 <input type="radio" name="size" id="medium" value="medium" required /> Medium
             </label>
             </Tippy>
-            <Tippy content="Max size 75x70x100cm, 35kg" >
+            <Tippy content={props.bookingDetails.dimensions.large} >
             <label>
                 <input type="radio" name="size" id="large" value="large" required /> Large
             </label>
             </Tippy>
-            <Tippy content="Max size 1200x1000x2000cm, 350kg" >
+            <Tippy content={props.bookingDetails.dimensions.pallet} >
             <label>
                 <input type="radio" name="size" id="pallet" value="pallet" required /> Pallet
             </label>

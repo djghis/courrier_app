@@ -36,7 +36,7 @@ class BookingPage extends Component {
         emailAddress: '',
       },
       details: {
-        size: this.props.size,
+        size: this.props.bookingDetails.size,
         weight: 0,
         comment: '',
         referenceNumber: '',
@@ -82,6 +82,7 @@ class BookingPage extends Component {
   
 
   render() {
+    const dimensions = `max size: Small: ${this.props.bookingDetails.dimensions.small} \n \n  Medium: ${this.props.bookingDetails.dimensions.medium}  \n \n  Large: ${this.props.bookingDetails.dimensions.large}  \n \n  Pallet: ${this.props.bookingDetails.dimensions.pallet}`
     return (
       <>
       <form onSubmit={this.handleSubmit}>
@@ -172,14 +173,15 @@ class BookingPage extends Component {
 
             <h3>Parcel Details</h3>
             
-              <label>Size: <Tippy content=" max size: Small: 56x67x45cm  Medium: 452366   Large: 4536  Pallet: 1000x1200x1500 "><span>
-            &#9432;</span></Tippy>
-            
+              {/* <label>Size: <Tippy content={dimensions}><span> */}
+              <label>Size: <Tippy content={dimensions}><span>
+                            &#9432;</span>
+                            </Tippy>
                   <select id="size" name="size" section="details" onChange={this.handleInputChange} defaultValue={this.state.details.size}>
-                    <option title="Parcel must be no more than 56x67x45cm" value ="small">small</option>
-                     <option value ="medium">medium</option>
-                    <option value ="large">large</option>
-                    <option value ="pallet">pallet</option>
+                    <option title={this.props.bookingDetails.dimensions.small} value ="small">small</option>
+                    <option title={this.props.bookingDetails.dimensions.medium} value ="medium">medium</option>
+                    <option title={this.props.bookingDetails.dimensions.large} value ="large">large</option>
+                    <option title={this.props.bookingDetails.dimensions.pallet} value ="pallet">pallet</option>
                   </select>
               </label>
               <label>Weight:

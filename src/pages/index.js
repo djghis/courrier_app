@@ -1,24 +1,11 @@
-// import React from "react"
-// import { Link } from "gatsby"
 import React, { Component } from 'react'
+// import { Link } from "gatsby"
 import Layout from "../components/layout"
 // import Image from "../components/image"
 import SEO from "../components/seo"
 import QuoteInput from "../components/quote-input"
 import BookingPage from './booking-page'
 
-// const IndexPage = (props) => (
- 
-//  <Layout>
-//     <SEO title="Home" />
-//     <h1>Hi people</h1>
-//     <div className='quote-input'>
-//       <QuoteInput  props={props} />
-//     </div>
-//   </Layout>
-// )
-
-// export default IndexPage
 
 
 
@@ -35,6 +22,12 @@ class IndexPage extends Component {
         medium: 20,
         large: 25,
         pallet: 65,
+      },
+      dimensions: {
+        small: 'Max size 35x45x60cm, 15kg',
+        medium: 'Max size 45x60x56cm, 20kg',
+        large: 'Max size 75x70x100cm, 35kg',
+        pallet: 'Max size 1200x1000x2000cm, 350kg'
       },
       validInput: {
         pickUpPostcode: false,
@@ -124,7 +117,7 @@ handleInputChange = event => {
         <h1>Hi people</h1>
         { !this.state.quoteAccepted ?
         <div className='quote-input'>
-          <QuoteInput  handleInputChange={this.handleInputChange} onChangeValue={this.onChangeValue} handleSubmit={this.handleSubmit} handleQuoteStatusChange={this.handleQuoteStatusChange} quote={this.state.quote} validInput={this.state.validInput} />     
+          <QuoteInput  handleInputChange={this.handleInputChange} onChangeValue={this.onChangeValue} handleSubmit={this.handleSubmit} handleQuoteStatusChange={this.handleQuoteStatusChange} quote={this.state.quote} validInput={this.state.validInput} bookingDetails={this.state} />     
         </div>
         :
         <div>
