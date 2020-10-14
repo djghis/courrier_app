@@ -75,11 +75,12 @@ const PlacesAutocomplete = () => {
       } = suggestion;
 
       return (
-          
+        <>  
         <li key={id} onClick={handleSelect(suggestion)}>
           <strong>{main_text}</strong> <small>{secondary_text}</small>
         </li>
         
+        </>
       );
     });
 
@@ -95,7 +96,7 @@ const PlacesAutocomplete = () => {
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
       {status === "OK" && <ul>{renderSuggestions()}</ul>}
         </div>
-        <image src={powered_by_google_on_white} alt="Google logo" />
+      {status === "OK" && <img src={powered_by_google_on_white} alt="Google logo" />}
     </div>
   );
 };
