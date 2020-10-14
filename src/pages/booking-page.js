@@ -82,7 +82,15 @@ class BookingPage extends Component {
   
 
   render() {
-    const dimensions = `max size: Small: ${this.props.bookingDetails.dimensions.small} \n \n  Medium: ${this.props.bookingDetails.dimensions.medium}  \n \n  Large: ${this.props.bookingDetails.dimensions.large}  \n \n  Pallet: ${this.props.bookingDetails.dimensions.pallet}`
+    // const dimensions = `max size: Small: ${this.props.bookingDetails.dimensions.small} \n \n  Medium: ${this.props.bookingDetails.dimensions.medium}  \n \n  Large: ${this.props.bookingDetails.dimensions.large}  \n \n  Pallet: ${this.props.bookingDetails.dimensions.pallet}`
+      const dimensions =  <div>
+      <p className="dimensions-popup"> Max Size: </p>
+      <p className="dimensions-popup">Small: {this.props.bookingDetails.dimensions.small}</p>
+      <p className="dimensions-popup">Medium: {this.props.bookingDetails.dimensions.medium}</p>
+      <p className="dimensions-popup">Large: {this.props.bookingDetails.dimensions.large}</p>
+      <p className="dimensions-popup">Pallet: {this.props.bookingDetails.dimensions.pallet}</p>
+    </div>
+   
     return (
       <>
       <form onSubmit={this.handleSubmit}>
