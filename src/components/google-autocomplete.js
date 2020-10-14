@@ -8,7 +8,7 @@ import useOnclickOutside from "react-cool-onclickoutside"
 import powered_by_google_on_white from '../images/powered_by_google_on_white.png'
 
 
-const PlacesAutocomplete = () => {
+const PlacesAutocomplete = ({handleAddressSelect}) => {
   const {
     ready,
     value,
@@ -39,6 +39,7 @@ const PlacesAutocomplete = () => {
     setValue(description, false);
     clearSuggestions();
     getPostcode(description);
+    handleAddressSelect(description);
 
    // Get latitude and longitude via utility functions
     getGeocode({ address: description })

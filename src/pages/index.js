@@ -121,7 +121,7 @@ handleInputChange = event => {
         </div>
         :
         <div>
-          <BookingPage  bookingDetails={this.state}/>
+          <BookingPage  bookingDetails={this.state} validInput={this.checkValidPostcode}/>
         </div>
         }
       </Layout> 
