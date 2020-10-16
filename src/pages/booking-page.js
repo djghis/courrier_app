@@ -8,12 +8,12 @@ class BookingPage extends Component {
     super(props);
     this.state = {
      pickUp: {
-      address1: '',
-      address2: '',
-      address3: '',
-      address4: '',
+      address1: null,
+      address2: null,
+      address3: null,
+      address4: null,
       postcode: this.props.bookingDetails.pickUpPostcode,
-      city: '',
+      city: null,
       date: '', 
       },
      customerDetails: {
@@ -59,16 +59,49 @@ class BookingPage extends Component {
   }))
   }
 
-  // handlePickupSelect = (address) => {
-  //   let addressArray = address.split(", ");
-  //   this.setState(prevState => ({
-  //     ...prevState,
-  //     [pickUp]: {
-  //         ...prevState[pickUp],
-  //         [address1]: value
-  //     }
-  //    }))
-  // }
+  handlePickupSelect = (address) => {
+    let addressArray = address.split(", ");
+    console.log('addressArray :>> ', addressArray);
+    addressArray.pop()
+    let city = addressArray.pop()
+    let address1 = addressArray.shift()
+    let address2 = addressArray.shift()
+    let address3 = addressArray.shift()
+    let address4 = addressArray.shift()
+    this.setState(prevState => ({
+      ...prevState,
+      pickUp: {
+          ...prevState['pickUp'],
+          address1: address1,
+          address2: address2,
+          address3: address3,
+          address4: address4,
+          city: city
+      }
+     }))
+  }
+
+  handleDropOffSelect = (address) => {
+    let addressArray = address.split(", ");
+    console.log('addressArray :>> ', addressArray);
+    addressArray.pop()
+    let city = addressArray.pop()
+    let address1 = addressArray.shift()
+    let address2 = addressArray.shift()
+    let address3 = addressArray.shift()
+    let address4 = addressArray.shift()
+    this.setState(prevState => ({
+      ...prevState,
+      dropOff: {
+          ...prevState['dropOff'],
+          address1: address1,
+          address2: address2,
+          address3: address3,
+          address4: address4,
+          city: city
+      }
+     }))
+  }
 
   onChangeValue = event => {
     this.setState({
@@ -124,19 +157,19 @@ class BookingPage extends Component {
             <PlacesAutocomplete handleAddressSelect={this.handlePickupSelect} />
 
             <label>Address line 1:
-                <input type="text" id="address1" name="address1" section="pickUp" value={this.state.pickUp.Address1}
+                <input type="text" id="address1" name="address1" section="pickUp" value={this.state.pickUp.address1}
                 onChange={this.handleInputChange} required />
             </label>
             <label>Address line 2:
-                <input type="text" id="address2" name="address2" section="pickUp" value={this.state.pickUp.Address2}
+                <input type="text" id="address2" name="address2" section="pickUp" value={this.state.pickUp.address2}
                 onChange={this.handleInputChange} />
             </label>
             <label>Address line 3:
-                <input type="text" id="address3" name="address3" section="pickUp" value={this.state.pickUp.Address3}
+                <input type="text" id="address3" name="address3" section="pickUp" value={this.state.pickUp.address3}
                 onChange={this.handleInputChange} />
             </label>
             <label>Address line 4:
-                <input type="text" id="address4" name="address4" section="pickUp" value={this.state.pickUp.Address4}
+                <input type="text" id="address4" name="address4" section="pickUp" value={this.state.pickUp.address4}
                 onChange={this.handleInputChange} />
             </label>
             <label>City:
@@ -152,20 +185,21 @@ class BookingPage extends Component {
                 onChange={this.handleInputChange}  required />
             </label>
             <h3>Drop Off details</h3>
+            <PlacesAutocomplete handleAddressSelect={this.handleDropOffSelect} />
               <label>Address line 1:
-                  <input type="text" id="address1DropOff" name="address1" section="dropOff" value={this.state.dropOff.Address1}
+                  <input type="text" id="address1DropOff" name="address1" section="dropOff" value={this.state.dropOff.address1}
                   onChange={this.handleInputChange} required  />
               </label>
               <label>Address line 2:
-                  <input type="text" id="address2DropOff" name="address2" section="dropOff" value={this.state.dropOff.Address2}
+                  <input type="text" id="address2DropOff" name="address2" section="dropOff" value={this.state.dropOff.address2}
                   onChange={this.handleInputChange} />
               </label>
               <label>Address line 3:
-                  <input type="text" id="address3DropOff" name="address3" section="dropOff" value={this.state.dropOff.Address3}
+                  <input type="text" id="address3DropOff" name="address3" section="dropOff" value={this.state.dropOff.address3}
                   onChange={this.handleInputChange} />
               </label>
               <label>Address line 4:
-                  <input type="text" id="address4DropOff" name="address4" section="dropOff" value={this.state.dropOff.Address4}
+                  <input type="text" id="address4DropOff" name="address4" section="dropOff" value={this.state.dropOff.address4}
                   onChange={this.handleInputChange} />
               </label>
               <label>City:
