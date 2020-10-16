@@ -9,6 +9,8 @@ import powered_by_google_on_white from '../images/powered_by_google_on_white.png
 
 
 const PlacesAutocomplete = ({handleAddressSelect}) => {
+  
+  const LatLng = (51.5, -0.1);
   const {
     ready,
     value,
@@ -17,12 +19,22 @@ const PlacesAutocomplete = ({handleAddressSelect}) => {
     clearSuggestions,
   } = usePlacesAutocomplete({
     requestOptions: {
+      
       strictbounds: true,
-        location: {lat:51.5,lng:-0.1},
-        radius: 30000
-    },
+        location:{lat: "51.5", lng:" -0.1"},
+      radius: 30000,
+    // componentRestrictions: {  //works for uk only
+      // country: 'UK',
+    // }
+    
+      // componentRestrictions {
+      //   location: (51.5, -0.1),
+      //   radius: 30000
+      // },
+  },
     debounce: 900,
-  });
+
+});
 
   const ref = useOnclickOutside(() => {
     // When user clicks outside of the component, we can dismiss
