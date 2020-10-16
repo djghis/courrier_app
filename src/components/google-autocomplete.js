@@ -17,7 +17,9 @@ const PlacesAutocomplete = ({handleAddressSelect}) => {
     clearSuggestions,
   } = usePlacesAutocomplete({
     requestOptions: {
-      /* Define search scope here */
+      strictbounds: true,
+        location: {lat:51.5,lng:-0.1},
+        radius: 30000
     },
     debounce: 900,
   });
