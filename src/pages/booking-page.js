@@ -45,6 +45,20 @@ class BookingPage extends Component {
     }
   }
 
+  clearState = (blah) => {
+    this.setState(prevState => ({
+          ...prevState,
+          [blah]: {
+              ...prevState[blah],
+              address1: 'a',
+              address2: 'b',
+              address3: 'c',
+              address4: 'd',
+              city: ''
+          }
+         }))
+        }
+
   handleInputChange = event => {
     const target = event.target
     const value = target.value
@@ -59,26 +73,32 @@ class BookingPage extends Component {
   }))
   }
 
+  getAddressLine = (arr) => {
+    let line = arr.shift()
+    return line ? line : ""
+  }
+
   handlePickupSelect = (address) => {
     let addressArray = address.split(", ");
     console.log('addressArray :>> ', addressArray);
     addressArray.pop()
     let city = addressArray.pop()
-    let address1 = addressArray.shift()
-    let address2 = addressArray.shift()
-    let address3 = addressArray.shift()
-    let address4 = addressArray.shift()
-    this.setState(prevState => ({
-      ...prevState,
-      pickUp: {
-          ...prevState['pickUp'],
-          address1: address1,
-          address2: address2,
-          address3: address3,
-          address4: address4,
-          city: city
-      }
-     }))
+    let address1 = this.getAddressLine(addressArray)
+    let address2 = this.getAddressLine(addressArray)
+    let address3 = this.getAddressLine(addressArray)
+    let address4 = this.getAddressLine(addressArray)
+    
+   this.setState(prevState => ({
+     ...prevState,
+     pickUp: {
+         ...prevState['pickUp'],
+         address1: address1,
+         address2: address2,
+         address3: address3,
+         address4: address4,
+         city: city
+     }
+    }))
   }
 
   handleDropOffSelect = (address) => {
@@ -86,21 +106,21 @@ class BookingPage extends Component {
     console.log('addressArray :>> ', addressArray);
     addressArray.pop()
     let city = addressArray.pop()
-    let address1 = addressArray.shift()
-    let address2 = addressArray.shift()
-    let address3 = addressArray.shift()
-    let address4 = addressArray.shift()
+    let address1 = this.getAddressLine(addressArray)
+    let address2 = this.getAddressLine(addressArray)
+    let address3 = this.getAddressLine(addressArray)
+    let address4 = this.getAddressLine(addressArray)
     this.setState(prevState => ({
-      ...prevState,
-      dropOff: {
-          ...prevState['dropOff'],
-          address1: address1,
-          address2: address2,
-          address3: address3,
-          address4: address4,
-          city: city
-      }
-     }))
+     ...prevState,
+     dropOff: {
+         ...prevState['dropOff'],
+         address1: address1,
+         address2: address2,
+         address3: address3,
+         address4: address4,
+         city: city
+     }
+    }))
   }
 
   onChangeValue = event => {

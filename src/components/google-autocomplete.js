@@ -10,7 +10,7 @@ import powered_by_google_on_white from '../images/powered_by_google_on_white.png
 
 const PlacesAutocomplete = ({handleAddressSelect}) => {
   
-  const LatLng = (51.5, -0.1);
+  // const LatLng = (51.5, -0.1);
   const {
     ready,
     value,
@@ -20,12 +20,12 @@ const PlacesAutocomplete = ({handleAddressSelect}) => {
   } = usePlacesAutocomplete({
     requestOptions: {
       
-      strictbounds: true,
-        location:{lat: "51.5", lng:" -0.1"},
-      radius: 30000,
-    // componentRestrictions: {  //works for uk only
-      // country: 'UK',
-    // }
+      // strictbounds: true,
+      //   location:{lat: "51.5", lng:" -0.1"},
+      // radius: 30000,
+    componentRestrictions: {  //works for uk only
+      country: 'UK',
+    }
     
       // componentRestrictions {
       //   location: (51.5, -0.1),
