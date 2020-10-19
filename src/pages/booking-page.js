@@ -45,20 +45,7 @@ class BookingPage extends Component {
     }
   }
 
-  clearState = (blah) => {
-    this.setState(prevState => ({
-          ...prevState,
-          [blah]: {
-              ...prevState[blah],
-              address1: 'a',
-              address2: 'b',
-              address3: 'c',
-              address4: 'd',
-              city: ''
-          }
-         }))
-        }
-
+ 
   handleInputChange = event => {
     const target = event.target
     const value = target.value
@@ -78,7 +65,7 @@ class BookingPage extends Component {
     return line ? line : ""
   }
 
-  handlePickupSelect = (address) => {
+  handlePickupSelect = (address, postcode) => {
     let addressArray = address.split(", ");
     console.log('addressArray :>> ', addressArray);
     addressArray.pop()
@@ -96,12 +83,23 @@ class BookingPage extends Component {
          address2: address2,
          address3: address3,
          address4: address4,
-         city: city
+         city: city,
+         postcode: postcode
      }
     }))
   }
 
-  handleDropOffSelect = (address) => {
+  // changePostcode = (postcode, pickOrDrop)  => {
+  //   this.setState(prevState => ({
+  //     ...prevState,
+  //     [pickOrDrop]: {
+  //         ...prevState[pickOrDrop],
+  //         postcode: postcode,
+  //     }
+  //    }))
+  // }
+
+  handleDropOffSelect = (address, postcode) => {
     let addressArray = address.split(", ");
     console.log('addressArray :>> ', addressArray);
     addressArray.pop()
@@ -118,7 +116,8 @@ class BookingPage extends Component {
          address2: address2,
          address3: address3,
          address4: address4,
-         city: city
+         city: city,
+         postcode: postcode
      }
     }))
   }
@@ -197,7 +196,7 @@ class BookingPage extends Component {
                 onChange={this.handleInputChange} required  />
             </label>
             <label>Pick-up Postcode:
-                <input type="text" id="postcode" name="postcode" section="pickUp" className={!this.props.validInput(this.state.pickUp.postcode)? 'red' : ''} defaultValue={this.state.pickUp.postcode}
+                <input type="text" id="postcode" name="postcode" section="pickUp" className={!this.props.validInput(this.state.pickUp.postcode)? 'red' : ''}  value={this.state.pickUp.postcode}
             onChange={this.handleInputChange} pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})" required />
             </label>
             <label>date:
@@ -227,7 +226,7 @@ class BookingPage extends Component {
                   onChange={this.handleInputChange} required  />
               </label>
               <label>Drop off Postcode:
-                  <input type="text" id="dropOffPostcode" name="postcode" section="dropOff" className={!this.props.validInput(this.state.dropOff.postcode)? 'red' : ''} defaultValue={this.state.dropOff.postcode}
+                  <input type="text" id="dropOffPostcode" name="postcode" section="dropOff" className={!this.props.validInput(this.state.dropOff.postcode)? 'red' : ''} value={this.state.dropOff.postcode}
                   onChange={this.handleInputChange} pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})" required />
               </label>
 

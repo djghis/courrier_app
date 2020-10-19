@@ -52,30 +52,33 @@ const PlacesAutocomplete = ({handleAddressSelect}) => {
     // by setting the second parameter to "false"
     setValue(description, false);
     clearSuggestions();
-    getPostcode(description);
-    handleAddressSelect(description);
+    getPostcode(description)
+      
+    
 
    // Get latitude and longitude via utility functions
-    getGeocode({ address: description })
-      .then((results) => getLatLng(results[0]))
-      .then(({ lat, lng }) => {
-        console.log("📍 Coordinates: ", { lat, lng });
-      })
-      .catch((error) => {
-        console.log("😱 Error: ", error);
-      });
+    // getGeocode({ address: description })
+    //   .then((results) => getLatLng(results[0]))
+    //   .then(({ lat, lng }) => {
+    //     console.log("📍 Coordinates: ", { lat, lng });
+    //   })
+    //   .catch((error) => {
+    //     console.log("😱 Error: ", error);
+    //   });
      
   };
 
   
 
-  const getPostcode = (parameter) => {
+  const getPostcode = async (parameter) => {
     getGeocode({address: parameter})
     // By default we use the "long_name" value from API response, you can tell the utility to use "short_name"
     // by setting the second parameter to "true"
     .then((results) => getZipCode(results[0], false))
     .then((zipCode) => {
         console.log("ZIP Code: ", zipCode);
+        handleAddressSelect(parameter, zipCode)
+    
     })
     .catch((error) => {
         console.log("Error: ", error);
