@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PlacesAutocomplete from '../components/google-autocomplete'
+import PlacesAutocomplete from './google-autocomplete'
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
 
@@ -12,7 +12,7 @@ class BookingPage extends Component {
       address2: null,
       address3: null,
       address4: null,
-      postcode: "",
+      postcode: this.props.bookingDetails.pickUpPostcode,
       city: null,
       date: '', 
       },
@@ -26,7 +26,7 @@ class BookingPage extends Component {
       address2: '',
       address3: '',
       address4: '',
-      postcode:  "",
+      postcode: this.props.bookingDetails.dropOffPostcode,
       city: '',
       date: '', 
       },

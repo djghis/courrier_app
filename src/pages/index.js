@@ -4,7 +4,7 @@ import Layout from "../components/layout"
 // import Image from "../components/image"
 import SEO from "../components/seo"
 import QuoteInput from "../components/quote-input"
-import BookingPage from './booking-page'
+import BookingPage from '../components/booking-page'
 
 
 
