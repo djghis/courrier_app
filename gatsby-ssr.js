@@ -11,7 +11,7 @@ export const onRenderBody = (
     setHeadComponents([
         <script
          type="text/javascript" 
-         src={`https://maps.googleapis.com/maps/api/js?key=${process.env.KEY}&libraries=places`}
+         src={`https://maps.googleapis.com/maps/api/js?key=${process.env.GATSBY_KEY}&libraries=places`}
          >
          </script>
     ])
