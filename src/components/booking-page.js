@@ -8,12 +8,12 @@ class BookingPage extends Component {
     super(props);
     this.state = {
      pickUp: {
-      address1: null,
-      address2: null,
-      address3: null,
-      address4: null,
+      address1: '',
+      address2: '',
+      address3: '',
+      address4: '',
       postcode: this.props.bookingDetails.pickUpPostcode,
-      city: null,
+      city: '',
       date: '', 
       },
      customerDetails: {
@@ -156,95 +156,99 @@ class BookingPage extends Component {
    
     return (
       <>
-      <form onSubmit={this.handleSubmit}>
-          <h3>Customer Details</h3>
-            <label>Name:
-                <input type="text" id="name" name="name" section="customerDetails" value={this.state.customerDetails.name}
-                onChange={this.handleInputChange} required />
-            </label>
-            <label>Phone Number:
-                <input type="tel" id="phoneNumber" name="phoneNumber" section="customerDetails" value={this.state.customerDetails.phoneNumber}
-                onChange={this.handleInputChange} required   />
-            </label>
-            <label>Email address:
-                <input type="email" id="emailAddress" name="emailAddress" section="customerDetails" value={this.state.customerDetails.emailAddress}
-                onChange={this.handleInputChange} required  />
-            </label>
-          
-          <h3>Pick up Details</h3>
+      <form onSubmit={this.handleSubmit} className="booking-form">
+        <div className="inputs">
+        <div className="pickup-input">
+          <h2>Pick up Details</h2>
+            <h3>Customer Details</h3>
+              <label>Name:
+                  <input type="text" id="name" name="name" section="customerDetails" value={this.state.customerDetails.name}
+                  onChange={this.handleInputChange} required />
+              </label><br/>
+              <label>Phone Number:
+                  <input type="tel" id="phoneNumber" name="phoneNumber" section="customerDetails" value={this.state.customerDetails.phoneNumber}
+                  onChange={this.handleInputChange} required   />
+              </label><br/>
+              <label>Email address:
+                  <input type="email" id="emailAddress" name="emailAddress" section="customerDetails" value={this.state.customerDetails.emailAddress}
+                  onChange={this.handleInputChange} required  />
+              </label><br/>
 
-            <PlacesAutocomplete handleAddressSelect={this.handlePickupSelect} />
+              <PlacesAutocomplete handleAddressSelect={this.handlePickupSelect} className="google-input"/>
 
-            <label>Address line 1:
-                <input type="text" id="address1" name="address1" section="pickUp" value={this.state.pickUp.address1}
-                onChange={this.handleInputChange} required />
-            </label>
-            <label>Address line 2:
-                <input type="text" id="address2" name="address2" section="pickUp" value={this.state.pickUp.address2}
-                onChange={this.handleInputChange} />
-            </label>
-            <label>Address line 3:
-                <input type="text" id="address3" name="address3" section="pickUp" value={this.state.pickUp.address3}
-                onChange={this.handleInputChange} />
-            </label>
-            <label>Address line 4:
-                <input type="text" id="address4" name="address4" section="pickUp" value={this.state.pickUp.address4}
-                onChange={this.handleInputChange} />
-            </label>
-            <label>City:
-                <input type="text" id="city" name="city" section="pickUp" value={this.state.pickUp.city}
-                onChange={this.handleInputChange} required  />
-            </label>
-            <label>Pick-up Postcode:
-                <input type="text" id="postcode" name="postcode" section="pickUp" className={!this.props.validInput(this.state.pickUp.postcode)? 'red' : ''}  value={this.state.pickUp.postcode}
-            onChange={this.handleInputChange} pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})" required />
-            </label>
-            <label>date:
-                <input type="date" id="date" name="date" section="pickUp" value={this.state.pickUp.date}
-                onChange={this.handleInputChange}  required />
-            </label>
-            <h3>Drop Off details</h3>
-            <PlacesAutocomplete handleAddressSelect={this.handleDropOffSelect} />
               <label>Address line 1:
-                  <input type="text" id="address1DropOff" name="address1" section="dropOff" value={this.state.dropOff.address1}
-                  onChange={this.handleInputChange} required  />
-              </label>
+                  <input type="text" id="address1" name="address1" section="pickUp" value={this.state.pickUp.address1}
+                  onChange={this.handleInputChange} required />
+              </label><br/>
               <label>Address line 2:
-                  <input type="text" id="address2DropOff" name="address2" section="dropOff" value={this.state.dropOff.address2}
+                  <input type="text" id="address2" name="address2" section="pickUp" value={this.state.pickUp.address2}
                   onChange={this.handleInputChange} />
-              </label>
+              </label><br/>
               <label>Address line 3:
-                  <input type="text" id="address3DropOff" name="address3" section="dropOff" value={this.state.dropOff.address3}
+                  <input type="text" id="address3" name="address3" section="pickUp" value={this.state.pickUp.address3}
                   onChange={this.handleInputChange} />
-              </label>
+              </label><br/>
               <label>Address line 4:
-                  <input type="text" id="address4DropOff" name="address4" section="dropOff" value={this.state.dropOff.address4}
+                  <input type="text" id="address4" name="address4" section="pickUp" value={this.state.pickUp.address4}
                   onChange={this.handleInputChange} />
-              </label>
+              </label><br/>
               <label>City:
-                  <input type="text" id="city" name="cityDropOff" section="dropOff" value={this.state.dropOff.city}
+                  <input type="text" id="city" name="city" section="pickUp" value={this.state.pickUp.city}
                   onChange={this.handleInputChange} required  />
-              </label>
-              <label>Drop off Postcode:
-                  <input type="text" id="dropOffPostcode" name="postcode" section="dropOff" className={!this.props.validInput(this.state.dropOff.postcode)? 'red' : ''} value={this.state.dropOff.postcode}
-                  onChange={this.handleInputChange} pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})" required />
-              </label>
-
+              </label><br/>
+              <label>Postcode:
+                  <input type="text" id="postcode" name="postcode" section="pickUp" className={!this.props.validInput(this.state.pickUp.postcode)? 'red' : ''}  value={this.state.pickUp.postcode}
+              onChange={this.handleInputChange} pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})" required />
+              </label><br/>
+              <label>date:
+                  <input type="date" id="date" name="date" section="pickUp" value={this.state.pickUp.date}
+                  onChange={this.handleInputChange}  required />
+              </label><br/>
+        </div>
+        <div className="dropoff-input">
+            <h2>Drop Off details</h2>
             <h3>Recipient Details</h3>
               <label>Name:
                   <input type="text" id="name" name="name" section="recipient" value={this.state.recipient.name}
                   onChange={this.handleInputChange}  required />
-              </label>
+              </label><br/>
               <label>Phone Number:
                   <input type="tel" id="phoneNumber" name="phoneNumber" section="recipient" value={this.state.recipient.phoneNumber}
                   onChange={this.handleInputChange}  required  />
-              </label>
+              </label><br/>
               <label>Email address:
                   <input type="email" id="emailAddress" name="emailAddress" section="recipient" value={this.state.recipient.emailAddress}
                   onChange={this.handleInputChange} />
-              </label>
-          
-
+              </label><br/>
+            
+            <PlacesAutocomplete handleAddressSelect={this.handleDropOffSelect} className="google-input"/>
+              <label>Address line 1:
+                  <input type="text" id="address1DropOff" name="address1" section="dropOff" value={this.state.dropOff.address1}
+                  onChange={this.handleInputChange} required  />
+              </label><br/>
+              <label>Address line 2:
+                  <input type="text" id="address2DropOff" name="address2" section="dropOff" value={this.state.dropOff.address2}
+                  onChange={this.handleInputChange} />
+              </label><br/>
+              <label>Address line 3:
+                  <input type="text" id="address3DropOff" name="address3" section="dropOff" value={this.state.dropOff.address3}
+                  onChange={this.handleInputChange} />
+              </label><br/>
+              <label>Address line 4:
+                  <input type="text" id="address4DropOff" name="address4" section="dropOff" value={this.state.dropOff.address4}
+                  onChange={this.handleInputChange} />
+              </label><br/>
+              <label>City:
+                  <input type="text" id="city" name="cityDropOff" section="dropOff" value={this.state.dropOff.city}
+                  onChange={this.handleInputChange} required  />
+              </label><br/>
+              <label>Postcode:
+                  <input type="text" id="dropOffPostcode" name="postcode" section="dropOff" className={!this.props.validInput(this.state.dropOff.postcode)? 'red' : ''} value={this.state.dropOff.postcode}
+                  onChange={this.handleInputChange} pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})" required />
+              </label><br/>
+        </div>
+        </div>
+        <div className="details-input">
             <h3>Parcel Details</h3>
               <label>Size:
                   <Tippy content={dimensions}>
@@ -258,21 +262,22 @@ class BookingPage extends Component {
                     <option title={this.props.bookingDetails.dimensions.large} value ="large">large</option>
                     <option title={this.props.bookingDetails.dimensions.pallet} value ="pallet">pallet</option>
                   </select>
-              </label>
+              </label><br/>
               <label>Weight:
                   <input type="number" id="weight" name="weight" section="details" value={this.state.details.weight}
                   onChange={this.handleInputChange}  required /><span>kg</span>
-              </label>
+              </label><br/>
               <label>Fragile:
                   <input type="checkbox" id="fragile" name="fragile" section="details" value={this.state.details.fragile}
                   onChange={this.handleFragileChange} />
-              </label>   
+              </label>  <br/> 
                   <textarea type="text" id="comment" name="comment" section="details" value={this.state.details.comment}
                   onChange={this.handleInputChange} placeholder="please tell us anything the driver needs to know." />     
               <button type="submit">
                   Book your delivery.
               </button>
-        </form>
+        </div>
+      </form>
         
       </>
     )

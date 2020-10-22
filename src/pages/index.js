@@ -114,7 +114,6 @@ handleInputChange = event => {
       <>
        <Layout>
         <SEO title="Home" />
-        <h1>Hi people</h1>
         { !this.state.quoteAccepted ?
         <div className='quote-input'>
           <QuoteInput  handleInputChange={this.handleInputChange} onChangeValue={this.onChangeValue} handleSubmit={this.handleSubmit} handleQuoteStatusChange={this.handleQuoteStatusChange} quote={this.state.quote} validInput={this.state.validInput} bookingDetails={this.state} />     
