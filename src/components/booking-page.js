@@ -174,7 +174,7 @@ class BookingPage extends Component {
                   onChange={this.handleInputChange} required  />
               </label><br/>
 
-              <PlacesAutocomplete handleAddressSelect={this.handlePickupSelect} className="google-input"/>
+              <PlacesAutocomplete handleAddressSelect={this.handlePickupSelect} />
 
               <label>Address line 1:
                   <input type="text" id="address1" name="address1" section="pickUp" value={this.state.pickUp.address1}
@@ -221,7 +221,7 @@ class BookingPage extends Component {
                   onChange={this.handleInputChange} />
               </label><br/>
             
-            <PlacesAutocomplete handleAddressSelect={this.handleDropOffSelect} className="google-input"/>
+            <PlacesAutocomplete handleAddressSelect={this.handleDropOffSelect} />
               <label>Address line 1:
                   <input type="text" id="address1DropOff" name="address1" section="dropOff" value={this.state.dropOff.address1}
                   onChange={this.handleInputChange} required  />

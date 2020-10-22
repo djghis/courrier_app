@@ -103,8 +103,8 @@ const PlacesAutocomplete = ({handleAddressSelect}) => {
     });
 
   return (
-      <div>
-    <div ref={ref}>
+    
+    <div ref={ref} className="google-input">
       <input
         value={value}
         onChange={handleInput}
@@ -112,10 +112,10 @@ const PlacesAutocomplete = ({handleAddressSelect}) => {
         placeholder="Where is Pickup?"
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
-      {status === "OK" && <ul>{renderSuggestions()}</ul>}
+      {status === "OK" && <ul>{renderSuggestions()}
+      <img src={powered_by_google_on_white} alt="Google logo" />
+      </ul> }
         </div>
-      {status === "OK" && <img src={powered_by_google_on_white} alt="Google logo" />}
-    </div>
   );
 };
 

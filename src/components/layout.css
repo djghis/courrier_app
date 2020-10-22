@@ -633,9 +633,7 @@ footer {
   padding: 0;
 }
 
-.booking-form{
-  /* display: flex */
-}
+
 
 .booking-form h3 {
   margin: 1em 0 0 0
@@ -647,8 +645,9 @@ footer {
 
 .inputs {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
-  margin: 0;
+  margin: 0 auto;
   padding: 0
 }
 
@@ -656,15 +655,63 @@ footer {
   border: 1px solid black;
   display: block;
   width: 50%;
+  min-width: 300px;
   padding: 2%
 }
 
 .dropoff-input {
   border: 1px solid black;
   width: 50%;
+  min-width: 300px;
   padding: 2%
 }
 
-.google-input input{
-  margin-top: 1em
+.google-input {
+  margin: 0.5em auto;
 }
+
+.google-input input{
+  margin: 0.5em auto;
+  width:100%; 
+}
+
+.google-input ul {
+  position: absolute;
+  background-color: white;
+  opacity: 1;
+  z-index: 2;
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+  border: solid 2px black;
+  border-radius: 10px;
+  width:40%;
+}
+
+.google-input img {
+  margin: 0px;
+}
+
+.inputs label{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+
+}
+
+.inputs input {
+  flex: 3;
+}
+
+@media only screen and (max-width: 650px) {
+  .pickup-input {
+    width: 100%;
+  }
+
+  .dropoff-input {
+    width: 100%;
+  }
+
+  
+}
+  

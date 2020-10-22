@@ -42,16 +42,24 @@ const QuoteInput = (props) => {
             </label>
             </Tippy>
             </div>
+            { (props.bookingDetails.pickUpPostcode && props.bookingDetails.dropOffPostcode && props.bookingDetails.size && !props.validInput.pickUpPostcode && !props.validInput.dropOffPostcode) ?
             <button type="submit">
                 Get quote.
-            </button>
+            </button> :
+            <div></div>
+            }
+            
         </form>
         { props.quote ?
         <div>
             <h1>Your quote: £{props.quote}</h1>
-            <button onClick={props.handleQuoteStatusChange} >
+           
+                <button onClick={props.handleQuoteStatusChange} >
               Continue to your booking.
             </button>
+          
+            
+     
         </div>
         :
         <div></div>
