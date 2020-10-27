@@ -2,7 +2,8 @@ module.exports = {
   siteMetadata: {
     title: `London Courier`,
     description: `London, Courier, parcel delivery, refrigirated vans`,
-    author: `Gareth & Gg`,
+    author1: `Gareth`,
+    author2: `Gg`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

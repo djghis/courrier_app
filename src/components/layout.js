@@ -18,7 +18,8 @@ const Layout = ({ children }) => {
       site {
         siteMetadata {
           title
-          author
+          author1
+          author2
         }
       }
     }
@@ -38,7 +39,7 @@ const Layout = ({ children }) => {
         <footer>
           © {new Date().getFullYear()}, Built with
           {` `}
-          <a href="https://github.com/GMorgan87">Gareth</a> and <a href="https://github.com/djghis">Gg</a>
+          <a href="https://github.com/GMorgan87">{data.site.siteMetadata.author1}</a> & <a href="https://github.com/djghis">{data.site.siteMetadata.author2}</a>
         </footer>
       </div>
     </>
