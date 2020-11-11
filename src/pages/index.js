@@ -108,7 +108,35 @@ handleInputChange = event => {
       {quoteAccepted:  true}
       )
     }
-  
+
+    postTest = () => {
+      this.postData({name: 'GG', address: "somewhere"})
+    }
+
+    postData = async (data) => {
+      console.log('Post data')
+      console.log('data :>> ', data);
+      // Default options are marked with *
+      const response = await fetch("https://b4luwwa3s7.execute-api.eu-west-1.amazonaws.com/dev/deliveries", {
+        method: 'POST',
+        mode: 'no-cors',
+        cache: 'no-cache',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data) 
+      })
+      return response
+    }
+
+    handleBookingSubmit = (data) => {
+      console.log('handleBookingSubmit')
+      this.postData(data)
+      .then(payload => {
+        console.log('Booking Posted')
+      })
+    }
+    
   render() {
     return (
       <>
@@ -116,11 +144,12 @@ handleInputChange = event => {
         <SEO title="Home" />
         { !this.state.quoteAccepted ?
         <div className='quote-input'>
+          <button onClick={this.postTest}>post test</button>
           <QuoteInput  handleInputChange={this.handleInputChange} onChangeValue={this.onChangeValue} handleSubmit={this.handleSubmit} handleQuoteStatusChange={this.handleQuoteStatusChange} quote={this.state.quote} validInput={this.state.validInput} bookingDetails={this.state} />     
         </div>
         :
         <div>
-          <BookingPage  bookingDetails={this.state} validInput={this.checkValidPostcode}/>
+          <BookingPage  bookingDetails={this.state} validInput={this.checkValidPostcode} handleBookingSubmit={this.handleBookingSubmit}/>
         </div>
         }
       </Layout> 

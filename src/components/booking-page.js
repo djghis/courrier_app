@@ -128,8 +128,39 @@ class BookingPage extends Component {
     });
   }
 
+  getAddressPickUp = () => `${this.state.pickUp.address1}, ${this.state.pickUp.address2}, ${this.state.pickUp.address3}, ${this.state.pickUp.address4}`
+  getAddressDropOff = () => `${this.state.dropOff.address1}, ${this.state.dropOff.address2}, ${this.state.dropOff.address3}, ${this.state.dropOff.address4}`
+
+
   handleSubmit = event => {
     event.preventDefault()
+    console.log('Submitted from booking page')
+    const booking = {
+      name: this.state.customerDetails.name,
+      phoneNumber: this.state.customerDetails.phoneNumber,
+      email: this.state.customerDetails.emailAddress,
+      notes: this.state.details.comment,
+      size: this.state.details.size,
+      weight: this.state.details.weight,
+      fragile: this.state.details.fragile,
+      pickUp: {
+        address: this.getAddressPickUp(),
+        postcode: this.state.pickUp.postcode,
+        city: this.state.pickUp.city,
+        date: this.state.pickUp.date
+      },
+      dropOff: {
+        address: this.getAddressDropOff(),
+        postcode: this.state.dropOff.postcode,
+        city: this.state.dropOff.city,
+        name: this.state.recipient.name,
+        email: this.state.recipient.emailAddress,
+        phoneNumber: this.state.recipient.phoneNumber
+      }
+      
+    }
+    console.log('booking :>> ', booking);
+    this.props.handleBookingSubmit(booking)
     this.setState({
         quote: 50
     })
