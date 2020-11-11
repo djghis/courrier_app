@@ -7,8 +7,6 @@ import QuoteInput from "../components/quote-input"
 import BookingPage from '../components/booking-page'
 
 
-
-
 class IndexPage extends Component {
   constructor(props) {
     super(props)
@@ -109,10 +107,6 @@ handleInputChange = event => {
       )
     }
 
-    postTest = () => {
-      this.postData({name: 'GG', address: "somewhere"})
-    }
-
     postData = async (data) => {
       console.log('Post data')
       console.log('data :>> ', data);
@@ -144,7 +138,6 @@ handleInputChange = event => {
         <SEO title="Home" />
         { !this.state.quoteAccepted ?
         <div className='quote-input'>
-          <button onClick={this.postTest}>post test</button>
           <QuoteInput  handleInputChange={this.handleInputChange} onChangeValue={this.onChangeValue} handleSubmit={this.handleSubmit} handleQuoteStatusChange={this.handleQuoteStatusChange} quote={this.state.quote} validInput={this.state.validInput} bookingDetails={this.state} />     
         </div>
         :
